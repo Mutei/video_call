@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:video_call/constant/colors.dart';
 
 class CustomTextFormField extends StatefulWidget {
   final String labelText;
@@ -33,7 +34,8 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
         suffixIcon: widget.isPasswordField
             ? IconButton(
                 icon: Icon(
-                  _obscureText ? Icons.visibility_off : Icons.visibility,
+                  _obscureText ? Icons.visibility_off : (Icons.visibility),
+                  color: kPrimaryColor,
                 ),
                 onPressed: () {
                   setState(() {

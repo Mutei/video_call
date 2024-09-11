@@ -74,4 +74,32 @@ class UserDataService {
       return 'User Full Name';
     }
   }
+
+  Future<List<Map<String, String>>> getAllUsers() async {
+    try {
+      final usersSnapshot = await _userRef.get();
+      List<Map<String, String>> users = [];
+
+      if (usersSnapshot.exists) {
+        final usersData = usersSnapshot.value as Map<dynamic, dynamic>;
+
+        usersData.forEach((userId, userInfo) {
+          if (userInfo is Map) {
+            String firstName = userInfo['FirstName'] ?? 'Unknown';
+            String secondName = userInfo['SecondName'] ?? '';
+            String lastName = userInfo['LastName'] ?? 'Unknown';
+            users.add({
+              'userId': userId,
+              'fullName': '$firstName $secondName $lastName',
+            });
+          }
+        });
+      }
+
+      return users;
+    } catch (e) {
+      print('Error fetching all users: $e');
+      return [];
+    }
+  }
 }
