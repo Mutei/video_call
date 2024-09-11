@@ -132,7 +132,8 @@ class _SignInScreenState extends State<SignInScreen> {
                         password = value;
                       });
                     },
-                    obscureText: true,
+                    isPasswordField:
+                        true, // Set this to true to enable password visibility toggle
                   ),
                   20.kH,
                   isLoading
