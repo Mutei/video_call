@@ -4,6 +4,7 @@ import '../constant/colors.dart';
 import '../widgets/custom_app_bar.dart';
 import '../widgets/reused_elevated_button.dart';
 import '../resources/auth_methods.dart';
+import '../widgets/sign_in_info_text_form_field.dart';
 import 'main_screen.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -66,9 +67,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 children: [
                   const Text("Enter your email and password for login"),
                   30.kH,
-                  TextFormField(
-                    decoration: const InputDecoration(labelText: 'Email'),
-                    keyboardType: TextInputType.emailAddress,
+                  CustomTextFormField(
+                    labelText: 'Email',
                     validator: (value) =>
                         value!.isEmpty ? 'Enter an email' : null,
                     onChanged: (value) {
@@ -76,11 +76,11 @@ class _LoginScreenState extends State<LoginScreen> {
                         email = value;
                       });
                     },
+                    keyboardType: TextInputType.emailAddress,
                   ),
                   20.kH,
-                  TextFormField(
-                    decoration: const InputDecoration(labelText: 'Password'),
-                    obscureText: true,
+                  CustomTextFormField(
+                    labelText: 'Password',
                     validator: (value) => value!.length < 6
                         ? 'Enter a password 6+ chars long'
                         : null,
@@ -89,6 +89,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         password = value;
                       });
                     },
+                    obscureText: true,
                   ),
                   20.kH,
                   isLoading

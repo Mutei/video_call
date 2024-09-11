@@ -5,8 +5,8 @@ import 'package:video_call/widgets/custom_app_bar.dart';
 import '../constant/colors.dart';
 import '../resources/auth_methods.dart';
 import '../widgets/reused_elevated_button.dart';
-import 'login_screen.dart';
-import 'otp_screen.dart';
+import '../widgets/sign_in_info_text_form_field.dart';
+import 'login_screen.dart'; // Import your custom widget
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({super.key});
@@ -77,8 +77,8 @@ class _SignInScreenState extends State<SignInScreen> {
                 children: [
                   const Text("Enter your details for sign up"),
                   30.kH,
-                  TextFormField(
-                    decoration: const InputDecoration(labelText: 'First Name'),
+                  CustomTextFormField(
+                    labelText: 'First Name',
                     validator: (value) =>
                         value!.isEmpty ? 'Enter your first name' : null,
                     onChanged: (value) {
@@ -88,8 +88,8 @@ class _SignInScreenState extends State<SignInScreen> {
                     },
                   ),
                   20.kH,
-                  TextFormField(
-                    decoration: const InputDecoration(labelText: 'Second Name'),
+                  CustomTextFormField(
+                    labelText: 'Second Name',
                     validator: (value) =>
                         value!.isEmpty ? 'Enter your second name' : null,
                     onChanged: (value) {
@@ -99,8 +99,8 @@ class _SignInScreenState extends State<SignInScreen> {
                     },
                   ),
                   20.kH,
-                  TextFormField(
-                    decoration: const InputDecoration(labelText: 'Last Name'),
+                  CustomTextFormField(
+                    labelText: 'Last Name',
                     validator: (value) =>
                         value!.isEmpty ? 'Enter your last name' : null,
                     onChanged: (value) {
@@ -110,9 +110,8 @@ class _SignInScreenState extends State<SignInScreen> {
                     },
                   ),
                   20.kH,
-                  TextFormField(
-                    decoration: const InputDecoration(labelText: 'Email'),
-                    keyboardType: TextInputType.emailAddress,
+                  CustomTextFormField(
+                    labelText: 'Email',
                     validator: (value) =>
                         value!.isEmpty ? 'Enter an email' : null,
                     onChanged: (value) {
@@ -120,11 +119,11 @@ class _SignInScreenState extends State<SignInScreen> {
                         email = value;
                       });
                     },
+                    keyboardType: TextInputType.emailAddress,
                   ),
                   20.kH,
-                  TextFormField(
-                    decoration: const InputDecoration(labelText: 'Password'),
-                    obscureText: true,
+                  CustomTextFormField(
+                    labelText: 'Password',
                     validator: (value) => value!.length < 6
                         ? 'Enter a password 6+ chars long'
                         : null,
@@ -133,6 +132,7 @@ class _SignInScreenState extends State<SignInScreen> {
                         password = value;
                       });
                     },
+                    obscureText: true,
                   ),
                   20.kH,
                   isLoading

@@ -1,57 +1,29 @@
 import 'package:flutter/material.dart';
 
-class SignInInfoTextFormField extends StatefulWidget {
-  final TextEditingController controller;
+class CustomTextFormField extends StatelessWidget {
   final String labelText;
-  final String? Function(String?) validator;
+  final Function(String) onChanged;
+  final String? Function(String?)? validator;
+  final TextInputType keyboardType;
   final bool obscureText;
-  final Widget? suffixIcon;
 
-  const SignInInfoTextFormField({
+  const CustomTextFormField({
     Key? key,
-    required this.controller,
     required this.labelText,
+    required this.onChanged,
     required this.validator,
+    this.keyboardType = TextInputType.text,
     this.obscureText = false,
-    this.suffixIcon,
   }) : super(key: key);
-
-  @override
-  _SignInInfoTextFormFieldState createState() =>
-      _SignInInfoTextFormFieldState();
-}
-
-class _SignInInfoTextFormFieldState extends State<SignInInfoTextFormField> {
-  bool _obscureText = true;
-
-  @override
-  void initState() {
-    super.initState();
-    _obscureText = widget.obscureText;
-  }
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      controller: widget.controller,
-      decoration: InputDecoration(
-        labelText: widget.labelText,
-        border: OutlineInputBorder(),
-        suffixIcon: widget.obscureText
-            ? IconButton(
-                icon: Icon(
-                  _obscureText ? Icons.visibility_off : Icons.visibility,
-                ),
-                onPressed: () {
-                  setState(() {
-                    _obscureText = !_obscureText;
-                  });
-                },
-              )
-            : widget.suffixIcon,
-      ),
-      obscureText: _obscureText,
-      validator: widget.validator,
+      decoration: InputDecoration(labelText: labelText),
+      validator: validator,
+      onChanged: onChanged,
+      keyboardType: keyboardType,
+      obscureText: obscureText,
     );
   }
 }
